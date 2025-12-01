@@ -69,11 +69,14 @@ export async function createReserva(payload: CreateReservaPayload) {
 }
 
 // 🔹 update: igual, ReservaResource => { data: Reserva }
+// api/reservas.ts
 export async function updateReserva(id: number, payload: Partial<Reserva>) {
   const headers = await authHeaders();
-  const { data } = await api.put<{ data: Reserva }>(`/reservas/${id}`, {
-    headers,
-  });
+  const { data } = await api.put<{ data: Reserva }>(
+    `/reservas/${id}`,
+    payload,           // 👈 AQUÍ va el cuerpo
+    { headers }
+  );
   return data.data;
 }
 

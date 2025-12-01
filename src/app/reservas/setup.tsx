@@ -193,18 +193,13 @@ export default function SetupReserva() {
 
       const reserva = await createReserva(payload);
 
-      Alert.alert(
-        "Reserva creada",
-        `Reserva #${reserva.id} creada por $${total.toFixed(2)}.`,
-        [
-          {
-            text: "OK",
-            onPress: () => {
-              router.back();
-            },
-          },
-        ]
-      );
+      router.push({
+        pathname: "/reservas/paywall",
+        params: {
+          reservaId: String(reserva.id),
+          total: total.toFixed(2), // para mostrar el monto en el paywall
+        },
+      });
     } catch (e: any) {
       console.log(
         "Error creando reserva",
