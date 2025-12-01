@@ -1,7 +1,7 @@
 import AsyncStorage from "@react-native-async-storage/async-storage";
 import axios from "axios";
 
-export const BASE_URL = "http://127.0.0.1:8000/api"; // cámbialo para device real (IP de tu PC en la red)
+export const BASE_URL = "http://10.211.55.4:8000/api"; // cámbialo para device real (IP de tu PC en la red)
 
 export const TOKEN_KEY = "@rc_token";
 
