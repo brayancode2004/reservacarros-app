@@ -1,4 +1,3 @@
-// app/(tabs)/index.tsx
 import { useRouter } from "expo-router";
 import React, { useCallback, useEffect, useState } from "react";
 import {

@@ -56,8 +56,10 @@ export async function listCarros(params?: {
 
 export async function getCarro(id: number) {
   const headers = await authHeaders();
-  const { data } = await api.get<Carro>(`/carros/${id}`, { headers });
-  return data;
+
+  const { data } = await api.get<{ data: Carro }>(`/carros/${id}`, { headers });
+
+  return data.data; 
 }
 
 export async function createCarro(payload: Omit<Carro,"id"|"created_at"|"updated_at">) {
