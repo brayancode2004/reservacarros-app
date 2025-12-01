@@ -94,7 +94,7 @@ export default function CarroDetalle() {
 
   const handleReservar = () => {
     router.push({
-      pathname: "/reserva/setup",
+      pathname: "/reservas/setup",
       params: { id: String(carro.id) },
     });
   };

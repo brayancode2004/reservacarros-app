@@ -60,7 +60,8 @@ function RootLayoutNav() {
       {/* Sólo disponible cuando está autenticado */}
       <Stack.Protected guard={isLoggedIn}>
         <Stack.Screen name="(tabs)" options={{ headerShown: false }} />
-         <Stack.Screen name="carros" options={{ headerShown: false }} />
+        <Stack.Screen name="carros" options={{ headerShown: false }} />
+        <Stack.Screen name="reservas" options={{ headerShown: false }} />
       </Stack.Protected>
 
       {/* Sólo disponible cuando NO está autenticado */}

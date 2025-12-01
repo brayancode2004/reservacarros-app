@@ -1,10 +1,11 @@
 import React from 'react'
 import { Text, View } from 'react-native'
 
-export default function SetupReserva() {
+export default function Paywall() {
   return (
     <View>
-      <Text>SetupReserva</Text>
+      <Text>Paywall</Text>
     </View>
   )
 }
+
