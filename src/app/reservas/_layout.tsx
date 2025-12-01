@@ -6,6 +6,7 @@ export default function Reservalayout() {
     <Stack screenOptions={{ headerShown: false }}>
       <Stack.Screen name='setup' />
       <Stack.Screen name='paywall' />
+      <Stack.Screen name='[id]' />
     </Stack>
   )
 }

@@ -123,20 +123,22 @@ export default function Paywall() {
         // 2) Marcar reserva como confirmada
         await updateReserva(reservaIdNum, { estado: "confirmada" });
 
-        Alert.alert("Pago exitoso 🎉", "Tu reserva ha sido pagada y confirmada.", [
-        {
-            text: "Ver reservas",
+        Alert.alert(
+        "Pago exitoso 🎉",
+        "Tu reserva ha sido pagada y confirmada.",
+        [
+            {
+            text: "Aceptar",
             onPress: () => {
-            // ajusta aquí a tu tab de reservas
-            router.push("/(tabs)/two");
+                router.replace({
+                pathname: "/reservas/[id]",
+                params: { id: String(reservaIdNum), from: "paywall" },
+                });
             },
-        },
-        {
-            text: "Ir al inicio",
-            style: "cancel",
-            onPress: () => router.push("/(tabs)"),
-        },
-        ]);
+            },
+        ]
+        );
+
     } catch (e: any) {
         console.log("Error creando pago / confirmando reserva", e?.response?.data || e?.message);
         Alert.alert(
