@@ -7,18 +7,51 @@ export type Carro = {
   modelo: string;
   anio: number;
   tarifa_diaria: number;
-  estado?: string;
+  estado: string;
   sucursal_id: number;
-  created_at?: string;
-  updated_at?: string;
+  sucursal?: {
+    id: number;
+    nombre: string;
+  };
+  fotos?: Array<{
+    id: number;
+    url: string;
+    principal: boolean;
+    orden: number;
+  }>;
 };
 
+export type PaginatedResponse<T> = {
+  data: T[];
+  meta: {
+    current_page: number;
+    last_page: number;
+    per_page: number;
+    total: number;
+    from: number | null;
+    to: number | null;
+  };
+  links: {
+    first: string | null;
+    last: string | null;
+    next: string | null;
+    prev: string | null;
+  };
+};
+
+
 export async function listCarros(params?: {
-  search?: string; estado?: string; sucursal_id?: number; page?: number;
+  search?: string;
+  estado?: string;
+  sucursal_id?: number;
+  page?: number;
 }) {
   const headers = await authHeaders();
-  const { data } = await api.get<Carro[]>("/carros", { headers, params });
-  return data;
+  const { data } = await api.get<PaginatedResponse<Carro>>("/carros", {
+    headers,
+    params,
+  });
+  return data; // aquí viene { data: Carro[], meta, links }
 }
 
 export async function getCarro(id: number) {

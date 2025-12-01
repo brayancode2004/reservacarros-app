@@ -10,10 +10,37 @@ export type Sucursal = {
   updated_at?: string;
 };
 
+// Puedes reutilizar el mismo tipo que usaste en carros.ts,
+// o declararlo aquí otra vez:
+type PaginatedResponse<T> = {
+  data: T[];
+  meta: {
+    current_page: number;
+    last_page: number;
+    per_page: number;
+    total: number;
+    from: number | null;
+    to: number | null;
+  };
+  links: {
+    first: string | null;
+    last: string | null;
+    next: string | null;
+    prev: string | null;
+  };
+};
+
 export async function listSucursales(params?: { search?: string; page?: number }) {
   const headers = await authHeaders();
-  const { data } = await api.get<Sucursal[]>("/sucursales", { headers, params });
-  return data;
+
+  // 👇 OJO: ahora asumimos que el backend devuelve paginado
+  const { data } = await api.get<PaginatedResponse<Sucursal>>("/sucursales", {
+    headers,
+    params,
+  });
+
+  // devolvemos SOLO el array de sucursales
+  return data.data;
 }
 
 export async function getSucursal(id: number) {
